@@ -20,6 +20,12 @@ void ControllerNodeServer::incomingConnection(qintptr handle)
     auto socket = new ControllerNodeSocket(handle, this);
     mSockets << socket;
 
+    for(auto i : mSockets){
+        QTextStream T(i);
+        T << "Server: Se ha conectado->" << handle;
+        i->flush();
+    }
+
     connect(socket, &ControllerNodeSocket::ControllerReadyRead, [&](ControllerNodeSocket *S){
         qDebug() << "ControllerNodeReadyRead";
         QTextStream T(S);
@@ -34,7 +40,7 @@ void ControllerNodeServer::incomingConnection(qintptr handle)
 
     connect(socket, &ControllerNodeSocket::ControllerStateChanged,
             [&](ControllerNodeSocket *S, int ST){
-        qDebug() << "ControllerNodeStateChanged con:" << S->setSocketDescriptor();
+        qDebug() << "ControllerNodeStateChanged con:" << S->socketDescriptor();
         if(ST == QTcpSocket::UnconnectedState){
             qDebug() << "Desconectado:" << S->socketDescriptor();
             mSockets.removeOne(S);
