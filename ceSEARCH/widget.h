@@ -25,6 +25,10 @@ private slots:
 
     void on_botonSubir_clicked();
 
+    void on_botonBuscar2_clicked();
+
+    void on_botonMostrar_clicked();
+
 private:
     Ui::Widget *ui;
     QTcpSocket *mSocket;

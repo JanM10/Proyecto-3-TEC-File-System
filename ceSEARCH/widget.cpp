@@ -66,5 +66,15 @@ void Widget::on_botonBuscar_clicked()
 
 void Widget::on_botonSubir_clicked()
 {
+    ui->textoBuscado->clear();
+}
+
+void Widget::on_botonBuscar2_clicked()
+{
+
+}
+
+void Widget::on_botonMostrar_clicked()
+{
 
 }
