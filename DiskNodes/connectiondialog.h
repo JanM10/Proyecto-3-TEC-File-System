@@ -3,6 +3,7 @@
 
 #include <QDialog>
 
+
 namespace Ui {
 class ConnectionDialog;
 }
@@ -25,6 +26,8 @@ private:
     Ui::ConnectionDialog *ui;
     QString mHostname;
     quint16 mPort;
+
+
 };
 
 inline QString ConnectionDialog::hostname() const
@@ -36,5 +39,6 @@ inline quint16 ConnectionDialog::port() const
 {
     return mPort;
 }
+
 
 #endif // CONNECTIONDIALOG_H

@@ -4,6 +4,13 @@
 #include "connectiondialog.h"
 #include <QTextStream>
 
+#include <QtCore>
+#include <QtXml/QtXml>
+#include <QtDebug>
+#include <tinyxml2.h>
+
+using namespace tinyxml2;
+
 Widget::Widget(QWidget *parent)
     : QWidget(parent)
     , ui(new Ui::Widget)
@@ -33,9 +40,16 @@ void Widget::on_botonEnviar_clicked()
 
 void Widget::on_botonConectar_clicked()
 {
-    ConnectionDialog D(this);
-    if(D.exec() == QDialog::Rejected){
-        return;
-    }
-    mSocket->connectToHost(D.hostname(),D.port());
+    XMLDocument doc;
+    doc.LoadFile("C:/Users/Tutor/OneDrive/Documentos/GitHub/Proyecto-3-TEC-File-System/DiskNodes/Infor.xml");
+
+    auto xmlElement = doc.FirstChildElement("TECFS-Disk");
+    auto headElement = xmlElement->FirstChildElement("Server");
+    auto ipElement = headElement->FirstChildElement("Ip");
+    auto portElement = headElement -> FirstChildElement ("Port");
+    //auto bodyElement = xmlElement->FirstChildElement("File");
+    //auto pElement1 = bodyElement -> FirstChildElement("Path1");
+    //auto pElement2 = bodyElement -> FirstChildElement("Path2");
+
+    mSocket->connectToHost(ipElement -> GetText(), portElement->FloatText());
 }
