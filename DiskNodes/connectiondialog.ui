@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>397</width>
-    <height>114</height>
+    <width>406</width>
+    <height>147</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -18,13 +18,24 @@
     <layout class="QHBoxLayout" name="horizontalLayout">
      <item>
       <widget class="QLabel" name="label">
+       <property name="font">
+        <font>
+         <pointsize>14</pointsize>
+        </font>
+       </property>
        <property name="text">
-        <string>Hostname</string>
+        <string>Hostname:</string>
        </property>
       </widget>
      </item>
      <item>
-      <widget class="QLineEdit" name="Hostname"/>
+      <widget class="QLineEdit" name="Hostname">
+       <property name="font">
+        <font>
+         <pointsize>14</pointsize>
+        </font>
+       </property>
+      </widget>
      </item>
     </layout>
    </item>
@@ -32,15 +43,25 @@
     <layout class="QFormLayout" name="formLayout">
      <item row="0" column="0">
       <widget class="QLabel" name="label_2">
+       <property name="font">
+        <font>
+         <pointsize>14</pointsize>
+        </font>
+       </property>
        <property name="text">
-        <string>Puerto</string>
+        <string>Puerto:</string>
        </property>
       </widget>
      </item>
      <item row="0" column="1">
-      <widget class="QSpinBox" name="Port">
+      <widget class="QSpinBox" name="Puerto">
+       <property name="font">
+        <font>
+         <pointsize>14</pointsize>
+        </font>
+       </property>
        <property name="maximum">
-        <number>9000</number>
+        <number>9999</number>
        </property>
       </widget>
      </item>
@@ -63,6 +84,11 @@
      </item>
      <item>
       <widget class="QPushButton" name="botonAceptar">
+       <property name="font">
+        <font>
+         <pointsize>14</pointsize>
+        </font>
+       </property>
        <property name="text">
         <string>Aceptar</string>
        </property>
@@ -70,6 +96,11 @@
      </item>
      <item>
       <widget class="QPushButton" name="botonCancelar">
+       <property name="font">
+        <font>
+         <pointsize>14</pointsize>
+        </font>
+       </property>
        <property name="text">
         <string>Cancelar</string>
        </property>

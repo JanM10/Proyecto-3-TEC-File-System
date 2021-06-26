@@ -16,7 +16,7 @@ ConnectionDialog::~ConnectionDialog()
 void ConnectionDialog::on_botonAceptar_clicked()
 {
     mHostname = ui->Hostname->text();
-    mPort = ui->Port->value();
+    mPort = ui->Puerto->value();
     accept();
 }
 
@@ -24,4 +24,3 @@ void ConnectionDialog::on_botonCancelar_clicked()
 {
     reject();
 }
-

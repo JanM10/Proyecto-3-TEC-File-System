@@ -23,15 +23,15 @@ Widget::~Widget()
     delete ui;
 }
 
-void Widget::on_Enviar_clicked()
+void Widget::on_botonEnviar_clicked()
 {
     QTextStream T(mSocket);
-    T << ui->Nickname->text() << ": " << ui->Message->text();
+    T << ui->Nickname->text() << ": " << ui->Mensaje->text();
     mSocket->flush();
-    ui->Message->clear();
+    ui->Mensaje->clear();
 }
 
-void Widget::on_Conectar_clicked()
+void Widget::on_botonConectar_clicked()
 {
     ConnectionDialog D(this);
     if(D.exec() == QDialog::Rejected){
@@ -39,5 +39,3 @@ void Widget::on_Conectar_clicked()
     }
     mSocket->connectToHost(D.hostname(),D.port());
 }
-
-

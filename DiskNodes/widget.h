@@ -18,8 +18,9 @@ public:
     ~Widget();
 
 private slots:
-    void on_Enviar_clicked();
-    void on_Conectar_clicked();
+    void on_botonEnviar_clicked();
+
+    void on_botonConectar_clicked();
 
 private:
     Ui::Widget *ui;
