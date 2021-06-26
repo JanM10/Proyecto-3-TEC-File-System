@@ -67,6 +67,10 @@ void Widget::on_botonBuscar_clicked()
 void Widget::on_botonSubir_clicked()
 {
     ui->textoBuscado->clear();
+    QTextStream T(mSocket);
+    T << ui->textoBuscado->toPlainText() << ": " << ui->Mensaje->text();
+    mSocket->flush();
+    ui->Mensaje->clear();
 }
 
 void Widget::on_botonBuscar2_clicked()
