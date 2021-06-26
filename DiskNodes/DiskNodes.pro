@@ -1,4 +1,4 @@
-QT       += core gui network
+QT       += core gui network xml
 
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
@@ -11,10 +11,12 @@ CONFIG += c++11
 SOURCES += \
     connectiondialog.cpp \
     main.cpp \
+    tinyxml2.cpp \
     widget.cpp
 
 HEADERS += \
     connectiondialog.h \
+    tinyxml2.h \
     widget.h
 
 FORMS += \

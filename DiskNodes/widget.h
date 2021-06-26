@@ -2,6 +2,11 @@
 #define WIDGET_H
 
 #include <QWidget>
+#include <QApplication>
+#include <QtCore>
+#include <QtXml/QtXml>
+#include <QtDebug>
+#include <tinyxml2.h>
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class Widget; }
@@ -16,6 +21,7 @@ class Widget : public QWidget
 public:
     Widget(QWidget *parent = nullptr);
     ~Widget();
+
 
 private slots:
     void on_Enviar_clicked();
