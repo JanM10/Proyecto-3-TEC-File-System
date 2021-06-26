@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-16"?>
+<?xml version="1.0"?>
 
 <TECFS-Disk>
 <Server>
@@ -6,8 +6,8 @@
     <Port>3333</Port>
 </Server>
 <File>
-    <Path1>Inserte path1 aqui</Path1>
-    <Path2>Inserte path2 aqui</Path2>
-    <Path3>Inserte path3 aqui</Path3>
+    <Path1>C:\Users\jmars\Documents\ProyectosQT\Proyecto-3-TEC-File-System\DiskNodes\RAID\DISK-NODE-1</Path1>
+    <Path2>C:\Users\jmars\Documents\ProyectosQT\Proyecto-3-TEC-File-System\DiskNodes\RAID\DISK-NODE-2</Path2>
+    <Path3>C:\Users\jmars\Documents\ProyectosQT\Proyecto-3-TEC-File-System\DiskNodes\RAID\DISK-NODE-3</Path3>
 </File>
 </TECFS-Disk>

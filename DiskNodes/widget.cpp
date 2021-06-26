@@ -41,7 +41,7 @@ void Widget::on_botonEnviar_clicked()
 void Widget::on_botonConectar_clicked()
 {
     XMLDocument doc;
-    doc.LoadFile("C:/Users/Tutor/OneDrive/Documentos/GitHub/Proyecto-3-TEC-File-System/DiskNodes/Infor.xml");
+    doc.LoadFile("C:/Users/jmars/Documents/ProyectosQT/Proyecto-3-TEC-File-System/DiskNodes/Infor.xml");
 
     auto xmlElement = doc.FirstChildElement("TECFS-Disk");
     auto headElement = xmlElement->FirstChildElement("Server");

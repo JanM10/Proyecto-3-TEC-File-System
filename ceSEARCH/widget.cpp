@@ -19,8 +19,10 @@ Widget::Widget(QWidget *parent)
         auto text = T.readAll();
         ui->textoBuscado->append(text);
     });
+    QString hostname = "localhost";
+    quint16 puerto = 3333;
 
-    mSocket->connectToHost("localhost","3333");
+    mSocket->connectToHost(hostname,puerto);
 }
 
 Widget::~Widget()
@@ -38,14 +40,14 @@ Widget::~Widget()
 
 //}
 
-void Widget::on_Conectar_clicked()
-{
-    ConnectionDialog D(this);
-    if(D.exec() == QDialog::Rejected){
-        return;
-    }
-    mSocket->connectToHost(D.hostname(),D.port());
-}
+//void Widget::on_Conectar_clicked()
+//{
+//    ConnectionDialog D(this);
+//    if(D.exec() == QDialog::Rejected){
+//        return;
+//    }
+//    mSocket->connectToHost(D.hostname(),D.port());
+//}
 
 void Widget::on_botonBuscar_clicked()
 {
