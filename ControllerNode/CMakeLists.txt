@@ -26,10 +26,3 @@ add_executable(ControllerNode
 target_link_libraries(ControllerNode Qt5::Core)
 target_link_libraries(ControllerNode Qt5::Widgets)
 target_link_libraries(ControllerNode Qt5::Network)
-
-#ControllerNode
-#main.cpp
-#controllernodesocket.cpp
-#controllernodesocket.h
-#controllernodeserver.cpp
-#controllernodeserver.h
