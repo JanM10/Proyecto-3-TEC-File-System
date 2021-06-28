@@ -7,6 +7,7 @@ set(CMAKE_INCLUDE_CURRENT_DIR ON)
 set(CMAKE_AUTOUIC ON)
 set(CMAKE_AUTOMOC ON)
 set(CMAKE_AUTORCC ON)
+    set(CMAKE_PREFIX_PATH $ENV{QTDIR})
 
 set(CMAKE_CXX_STANDARD 11)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
@@ -24,8 +25,7 @@ set(CMAKE_CXX_STANDARD_REQUIRED ON)
 #    endif()
 #endif()
 
-find_package(QT NAMES Qt6 Qt5 COMPONENTS Widgets REQUIRED)
-find_package(Qt${QT_VERSION_MAJOR} COMPONENTS Widgets REQUIRED)
+find_package(Qt5Core REQUIRED)
 find_package(Qt5Network REQUIRED)
 find_package(Qt5Xml REQUIRED)
 
@@ -57,6 +57,7 @@ else()
     endif()
 endif()
 
-target_link_libraries(DiskNode PRIVATE Qt${QT_VERSION_MAJOR}::Widgets)
-target_link_libraries(DiskNode PRIVATE Qt${QT_VERSION_MAJOR}::Network)
-target_link_libraries(DiskNode PRIVATE Qt${QT_VERSION_MAJOR}::Xml)
+target_link_libraries(DiskNode Qt5::Core)
+target_link_libraries(DiskNode Qt5::Network)
+target_link_libraries(DiskNode Qt5::Xml)
+

@@ -2,6 +2,9 @@
 #define WIDGET_H
 
 #include <QWidget>
+#include <string>
+
+using namespace std;
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class Widget; }
@@ -16,6 +19,7 @@ class Widget : public QWidget
 public:
     Widget(QWidget *parent = nullptr);
     ~Widget();
+    string texto = "";
 
 private slots:
 
