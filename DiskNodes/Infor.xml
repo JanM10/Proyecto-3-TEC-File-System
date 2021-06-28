@@ -4,6 +4,8 @@
 <Server>
     <Ip>localhost</Ip>
     <Port>3333</Port>
+    <Port2>4444</Port2>
+    <Port3>5555</Port3>
 </Server>
 <File>
     <Path1>C:\Users\jmars\Documents\ProyectosQT\Proyecto-3-TEC-File-System\DiskNodes\RAID\DISK-NODE-1</Path1>

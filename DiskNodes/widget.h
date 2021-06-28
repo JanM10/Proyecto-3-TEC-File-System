@@ -31,15 +31,8 @@ public:
 
 
 private slots:
-    ///
-    /// \brief on_botonEnviar_clicked
-    ///
-    void on_botonEnviar_clicked();
 
-    ///
-    /// \brief on_botonConectar_clicked
-    ///
-    void on_botonConectar_clicked();
+    void on_botonEnviar_clicked();
 
 private:
     ///

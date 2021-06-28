@@ -235,7 +235,8 @@ void Widget::on_botonSubir_clicked()
     QTextStream T(mSocket);
     string texto2 = ui->textoBuscado->toPlainText().toStdString();
     arbolHuffman(texto2);
-    QString qstr = QString::fromStdString(comprimido);
+    cout << "\nHuffman: " << comprimido << endl;
+    QString qstr = QString::fromStdString(texto2);
     cout << "\nTEXTO: " << qstr.toStdString() << endl;
     T << "Cliente: " << qstr;
     mSocket->flush();

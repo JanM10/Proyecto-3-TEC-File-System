@@ -57,13 +57,13 @@ int main(int argc, char *argv[])
 
         ///Esta funcion almacena los archivos de texto en los diferentes discos nodos
         ///como corresponde
-        QFile file("C:\\Users\\Tutor\\OneDrive\\Documentos\\GitHub\\Proyecto-3-TEC-File-System\\RAID\\DISK-NODE-1\\prueba.txt");
-          if (!file.open(QIODevice::WriteOnly | QIODevice::Text))
-              cout<<"no se que paso" << endl;
+//        QFile file("C:\\Users\\Tutor\\OneDrive\\Documentos\\GitHub\\Proyecto-3-TEC-File-System\\RAID\\DISK-NODE-1\\prueba.txt");
+//          if (!file.open(QIODevice::WriteOnly | QIODevice::Text))
+//              cout<<"no se que paso" << endl;
 
-           QTextStream archivo(&file);
+//           QTextStream archivo(&file);
 
-           archivo << cadena.c_str();
+//           archivo << cadena.c_str();
 
     a.setStyle("fusion");
     Widget w;

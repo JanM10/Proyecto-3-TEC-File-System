@@ -13,10 +13,17 @@
 #include <unordered_map>
 #include <stdlib.h>
 #include <fstream>
+#include <QFile>
 
 using namespace tinyxml2;
 using namespace std;
 #define CADENA_VACIA ""
+
+QString camino1 = "C:\\Users\\jmars\\Documents\\ProyectosQT\\Proyecto-3-TEC-File-System\\DiskNodes\\RAID\\DISK-NODE-1\\";
+string camino2 = "C:\\Users\\jmars\\Documents\\ProyectosQT\\Proyecto-3-TEC-File-System\\DiskNodes\\RAID\\DISK-NODE-2\\";
+string camino3 = "C:\\Users\\jmars\\Documents\\ProyectosQT\\Proyecto-3-TEC-File-System\\DiskNodes\\RAID\\DISK-NODE-3\\";
+QString textoRecibido;
+
 
 /// Un nodo de arbol
 struct Nodo{
@@ -176,12 +183,38 @@ Widget::Widget(QWidget *parent)
     ui->setupUi(this);
     mSocket = new QTcpSocket(this);
 
+    XMLDocument doc;
+    doc.LoadFile("C:/Users/jmars/Documents/ProyectosQT/Proyecto-3-TEC-File-System/DiskNodes/Infor.xml");
+
+    auto xmlElement = doc.FirstChildElement("TECFS-Disk");
+    auto headElement = xmlElement->FirstChildElement("Server");
+    auto ipElement = headElement->FirstChildElement("Ip");
+    auto portElement = headElement -> FirstChildElement ("Port");
+    auto bodyElement = xmlElement->FirstChildElement("File");
+    auto pElement1 = bodyElement -> FirstChildElement("Path1")->GetText();
+    auto pElement2 = bodyElement -> FirstChildElement("Path2")->GetText();
+    auto pElement3 = bodyElement -> FirstChildElement("Path3")->GetText();
+
+    QString parse1 = QString::fromStdString(pElement1);
+    QString parse2 = QString::fromStdString(pElement2);
+    QString parse3 = QString::fromStdString(pElement3);
+
+    QFile file1("C:\\Users\\jmars\\Documents\\ProyectosQT\\Proyecto-3-TEC-File-System\\DiskNodes\\RAID\\DISK-NODE-1\\prueba.txt");
+    QFile file2(parse2 + "prueba.txt");
+    QFile file3(parse3 + "prueba.txt");
+
+    mSocket->connectToHost(ipElement -> GetText(), portElement->FloatText());
+
     connect(mSocket, &QTcpSocket::readyRead, [&](){
         QTextStream T(mSocket);
-        auto text = T.readAll();
+        //auto text = T.readAll();
+        textoRecibido = T.readAll();
+        cout << "textoRecibido: " << textoRecibido.toStdString() << endl;
         //descodificar(text.toStdString());
-        ui->textEdit->append(text);
+        ui->textEdit->append(textoRecibido);
     });
+
+
 }
 
 ///
@@ -192,21 +225,8 @@ Widget::~Widget()
     delete ui;
 }
 
-///
-/// \brief Widget::on_botonEnviar_clicked
-///
+
 void Widget::on_botonEnviar_clicked()
-{
-    QTextStream T(mSocket);
-    T << ui->Nickname->text() << ": " << ui->Mensaje->text();
-    mSocket->flush();
-    ui->Mensaje->clear();
-}
-
-
-///Esta funcion hace que al presionar un boton, los nodos se conecten
-///al servidor por medio de la info dada por el XML
-void Widget::on_botonConectar_clicked()
 {
     XMLDocument doc;
     doc.LoadFile("C:/Users/jmars/Documents/ProyectosQT/Proyecto-3-TEC-File-System/DiskNodes/Infor.xml");
@@ -215,9 +235,21 @@ void Widget::on_botonConectar_clicked()
     auto headElement = xmlElement->FirstChildElement("Server");
     auto ipElement = headElement->FirstChildElement("Ip");
     auto portElement = headElement -> FirstChildElement ("Port");
-    //auto bodyElement = xmlElement->FirstChildElement("File");
-    //auto pElement1 = bodyElement -> FirstChildElement("Path1");
-    //auto pElement2 = bodyElement -> FirstChildElement("Path2");
+    auto bodyElement = xmlElement->FirstChildElement("File");
+    auto pElement1 = bodyElement -> FirstChildElement("Path1")->GetText();
+    auto pElement2 = bodyElement -> FirstChildElement("Path2")->GetText();
+    auto pElement3 = bodyElement -> FirstChildElement("Path3")->GetText();
 
-    mSocket->connectToHost(ipElement -> GetText(), portElement->FloatText());
+    QString parse1 = QString::fromStdString(pElement1);
+    QString parse2 = QString::fromStdString(pElement2);
+    QString parse3 = QString::fromStdString(pElement3);
+
+    QFile file1("C:\\Users\\jmars\\Documents\\ProyectosQT\\Proyecto-3-TEC-File-System\\DiskNodes\\RAID\\DISK-NODE-1\\prueba.txt");
+    QFile file2(parse2 + "prueba.txt");
+    QFile file3(parse3 + "prueba.txt");
+    if (!file1.open(QIODevice::WriteOnly | QIODevice::Text))
+          cout<<"no se que paso" << endl;
+
+    QTextStream archivo1(&file1);
+    archivo1 << textoRecibido.toStdString().c_str();
 }
