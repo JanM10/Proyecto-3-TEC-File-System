@@ -13,15 +13,20 @@
 #include <fstream>
 using namespace std;
 
+///
+/// \brief qMain
+/// \param argc
+/// \param argv
+/// \return
+///
 int main(int argc, char *argv[])
 {
     QApplication a(argc, argv);
 
-    /*
-     * En esta funcion se convierte el contenido del archivo de texto en
-     * una cadena de numeros binarios, con el fin de almacenar esta cadena
-     * en las diferentes carpetas del RAID
-     */
+
+     ///En esta funcion se convierte el contenido del archivo de texto en
+     ///una cadena de numeros binarios, con el fin de almacenar esta cadena
+     ///en las diferentes carpetas del RAID
     string myString = "osu! es un juego de clickear los circulos al ritmo de la musica";
 
       string cadena = "";
@@ -33,11 +38,10 @@ int main(int argc, char *argv[])
 
       cout << cadena << endl;
 
-      /*
-      * Esta funcion es para pasar los datos almacenados en codigo binario
-      * a un string normal, con la frase que fue previamente almacenada en el archivo
-      * de texto del RAID
-      */
+
+      ///Esta funcion es para pasar los datos almacenados en codigo binario
+      ///a un string normal, con la frase que fue previamente almacenada en el archivo
+      ///de texto del RAID
       string data = cadena;
           stringstream sstream(data);
           string output;
@@ -51,11 +55,8 @@ int main(int argc, char *argv[])
 
           cout << output << endl;
 
-
-          /*
-           * Esta funcion almacena los archivos de texto en los diferentes discos nodos
-           * como corresponde
-           */
+        ///Esta funcion almacena los archivos de texto en los diferentes discos nodos
+        ///como corresponde
         QFile file("C:\\Users\\Tutor\\OneDrive\\Documentos\\GitHub\\Proyecto-3-TEC-File-System\\RAID\\DISK-NODE-1\\prueba.txt");
           if (!file.open(QIODevice::WriteOnly | QIODevice::Text))
               cout<<"no se que paso" << endl;

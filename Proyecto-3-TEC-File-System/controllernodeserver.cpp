@@ -3,17 +3,30 @@
 #include <QDebug>
 #include <QTextStream>
 
+///
+/// \brief ControllerNodeServer::ControllerNodeServer
+/// \param parent
+///
 ControllerNodeServer::ControllerNodeServer(QObject *parent)
     :QTcpServer(parent)
 {
 
 }
 
+///
+/// \brief ControllerNodeServer::startServer
+/// \param port
+/// \return
+///
 bool ControllerNodeServer::startServer(quint16 port)
 {
     return listen(QHostAddress::Any, port);
 }
 
+///
+/// \brief ControllerNodeServer::incomingConnection
+/// \param handle
+///
 void ControllerNodeServer::incomingConnection(qintptr handle)
 {
     qDebug() << "El cliente se conecto con:" << handle;

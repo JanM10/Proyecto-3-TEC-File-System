@@ -1,5 +1,10 @@
 #include "controllernodesocket.h"
 
+///
+/// \brief ControllerNodeSocket::ControllerNodeSocket
+/// \param handle
+/// \param parent
+///
 ControllerNodeSocket::ControllerNodeSocket(qintptr handle, QObject *parent)
     :QTcpSocket(parent)
 {

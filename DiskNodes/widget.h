@@ -14,22 +14,42 @@ QT_END_NAMESPACE
 
 class QTcpSocket;
 
+///
+/// \brief The Widget class
+///
 class Widget : public QWidget
 {
     Q_OBJECT
 
 public:
+    ///
+    /// \brief Widget
+    /// \param parent
+    ///
     Widget(QWidget *parent = nullptr);
     ~Widget();
 
 
 private slots:
+    ///
+    /// \brief on_botonEnviar_clicked
+    ///
     void on_botonEnviar_clicked();
 
+    ///
+    /// \brief on_botonConectar_clicked
+    ///
     void on_botonConectar_clicked();
 
 private:
+    ///
+    /// \brief ui
+    ///
     Ui::Widget *ui;
+
+    ///
+    /// \brief mSocket
+    ///
     QTcpSocket *mSocket;
 };
 #endif // WIDGET_H
