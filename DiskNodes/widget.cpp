@@ -175,7 +175,7 @@ Widget::Widget(QWidget *parent)
     connect(mSocket, &QTcpSocket::readyRead, [&](){
         QTextStream T(mSocket);
         auto text = T.readAll();
-        descodificar(text.toStdString());
+        //descodificar(text.toStdString());
         ui->textEdit->append(text);
     });
 }
@@ -193,6 +193,10 @@ void Widget::on_botonEnviar_clicked()
     ui->Mensaje->clear();
 }
 
+/*
+ *  Esta funcion hace que al presionar un boton, los nodos se conecten
+ *  al servidor por medio de la info dada por el XML
+ */
 void Widget::on_botonConectar_clicked()
 {
     XMLDocument doc;
