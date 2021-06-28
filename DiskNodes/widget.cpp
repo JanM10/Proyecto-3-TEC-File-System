@@ -14,15 +14,19 @@
 #include <stdlib.h>
 #include <fstream>
 #include <QFile>
+#include <sstream>
+#include <bitset>
+
 
 using namespace tinyxml2;
 using namespace std;
 #define CADENA_VACIA ""
 
-QString camino1 = "C:\\Users\\jmars\\Documents\\ProyectosQT\\Proyecto-3-TEC-File-System\\DiskNodes\\RAID\\DISK-NODE-1\\";
-string camino2 = "C:\\Users\\jmars\\Documents\\ProyectosQT\\Proyecto-3-TEC-File-System\\DiskNodes\\RAID\\DISK-NODE-2\\";
-string camino3 = "C:\\Users\\jmars\\Documents\\ProyectosQT\\Proyecto-3-TEC-File-System\\DiskNodes\\RAID\\DISK-NODE-3\\";
-QString textoRecibido;
+QString camino1 = "C:\\Users\\jmars\\Documents\\ProyectosQT\\Proyecto-3-TEC-File-System\\RAID\\DISK-NODE-1\\";
+QString camino2 = "C:\\Users\\jmars\\Documents\\ProyectosQT\\Proyecto-3-TEC-File-System\\RAID\\DISK-NODE-2\\";
+QString camino3 = "C:\\Users\\jmars\\Documents\\ProyectosQT\\Proyecto-3-TEC-File-System\\RAID\\DISK-NODE-3\\";
+QString textoRecibido = "";
+QString numero = "1";
 
 
 /// Un nodo de arbol
@@ -199,20 +203,55 @@ Widget::Widget(QWidget *parent)
     QString parse2 = QString::fromStdString(pElement2);
     QString parse3 = QString::fromStdString(pElement3);
 
-    QFile file1("C:\\Users\\jmars\\Documents\\ProyectosQT\\Proyecto-3-TEC-File-System\\DiskNodes\\RAID\\DISK-NODE-1\\prueba.txt");
-    QFile file2(parse2 + "prueba.txt");
-    QFile file3(parse3 + "prueba.txt");
-
     mSocket->connectToHost(ipElement -> GetText(), portElement->FloatText());
 
     connect(mSocket, &QTcpSocket::readyRead, [&](){
         QTextStream T(mSocket);
         //auto text = T.readAll();
         textoRecibido = T.readAll();
-        cout << "textoRecibido: " << textoRecibido.toStdString() << endl;
+        QFile file1(camino1 +"Archivo" + numero + ".txt");
+        QFile file2(camino2 +"Archivo" + numero + ".txt");
+        QFile file3(camino3 +"Archivo" + numero + ".txt");
+
+        string cambiar = numero.toStdString();
+        int aux = stoi(cambiar);
+        aux++;
+        cambiar = to_string(aux);
+        numero = QString::fromStdString(cambiar);
+
+
+        if (!file1.open(QIODevice::WriteOnly | QIODevice::Text))
+            cout<<"no se que paso" << endl;
+
+        ///En esta funcion se convierte el contenido del archivo de texto en
+        ///una cadena de numeros binarios, con el fin de almacenar esta cadena
+        ///en las diferentes carpetas del RAID
+
+         string cadena = "";
+         for (std::size_t i = 0; i < textoRecibido.toStdString().size(); ++i)
+         {
+             cout << bitset<8>(textoRecibido.toStdString().c_str()[i]) << endl;
+             cadena += bitset<8>(textoRecibido.toStdString().c_str()[i]).to_string();
+         }
+
+         cout << cadena << endl;
+         string aux1 = cadena;
+         string aux2 = cadena;
+
+        QTextStream archivo1(&file1);
+        archivo1 << cadena.c_str();
+        QTextStream archivo2(&file2);
+        archivo2 << aux1.c_str();
+        QTextStream archivo3(&file3);
+        archivo3 << aux2.c_str();
+
+//        cout << "textoRecibido: " << textoRecibido.toStdString() << endl;
+
+
         //descodificar(text.toStdString());
         ui->textEdit->append(textoRecibido);
     });
+
 
 
 }
@@ -244,12 +283,12 @@ void Widget::on_botonEnviar_clicked()
     QString parse2 = QString::fromStdString(pElement2);
     QString parse3 = QString::fromStdString(pElement3);
 
-    QFile file1("C:\\Users\\jmars\\Documents\\ProyectosQT\\Proyecto-3-TEC-File-System\\DiskNodes\\RAID\\DISK-NODE-1\\prueba.txt");
+    QFile file1("C:\\Users\\jmars\\Documents\\ProyectosQT\\Proyecto-3-TEC-File-System\\RAID\\DISK-NODE-1\\prueba.txt");
     QFile file2(parse2 + "prueba.txt");
     QFile file3(parse3 + "prueba.txt");
     if (!file1.open(QIODevice::WriteOnly | QIODevice::Text))
-          cout<<"no se que paso" << endl;
+        cout<<"no se que paso" << endl;
 
-    QTextStream archivo1(&file1);
-    archivo1 << textoRecibido.toStdString().c_str();
+  QTextStream archivo1(&file1);
+  archivo1 << textoRecibido.toStdString().c_str();
 }

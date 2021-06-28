@@ -33,11 +33,11 @@ void ControllerNodeServer::incomingConnection(qintptr handle)
     auto socket = new ControllerNodeSocket(handle, this);
     mSockets << socket;
 
-    for(auto i : mSockets){
-        QTextStream T(i);
-        T << "Server: Se ha conectado->" << handle;
-        i->flush();
-    }
+//    for(auto i : mSockets){
+//        QTextStream T(i);
+//        T << "Server: Se ha conectado->" << handle;
+//        i->flush();
+//    }
 
     connect(socket, &ControllerNodeSocket::ControllerReadyRead, [&](ControllerNodeSocket *S){
         qDebug() << "ControllerNodeReadyRead";

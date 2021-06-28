@@ -238,7 +238,7 @@ void Widget::on_botonSubir_clicked()
     cout << "\nHuffman: " << comprimido << endl;
     QString qstr = QString::fromStdString(texto2);
     cout << "\nTEXTO: " << qstr.toStdString() << endl;
-    T << "Cliente: " << qstr;
+    T << qstr;
     mSocket->flush();
     ui->textoBuscado->clear();
 }
